@@ -1,7 +1,7 @@
 //Declarations
-const rock = document.querySelector(".rock");
-const paper = document.querySelector(".paper");
-const scissors = document.querySelector(".scissors");
+const rock = document.querySelector("#rock");
+const paper = document.querySelector("#paper");
+const scissors = document.querySelector("#scissors");
 const results=document.querySelector(".results");
 let humanScore = 0;
 let computerScore=0;
@@ -77,4 +77,3 @@ if (humanScore>computerScore){
 
 
     
-
