@@ -5,6 +5,9 @@ const scissors = document.querySelector("#scissors");
 const results=document.querySelector(".results");
 let humanScore = 0;
 let computerScore=0;
+let humanChoice;
+
+
 //functions
     //computer chooses something
     function getComputerChoice(){
@@ -21,7 +24,6 @@ let computerScore=0;
     }
     //plays round
     function playRound(humanChoice, computerChoice){
-        console.log("playRound was called")
         if (humanChoice=="rock"){
             if (computerChoice=="scissors"){
                 humanScore++;
@@ -59,14 +61,22 @@ let computerScore=0;
                 results.textContent=`A tie! Score: Human: ${humanScore}. Computer: ${computerScore}`;
             }
         }
+        if (humanScore === 5 || computerScore === 5) {
+        results.textContent += humanScore === 5
+            ? `\nGame over. You win!`
+            : `\nGame over. You lose.`;
+
+        // Optionally disable buttons here if you want
+        rock.disabled = true;
+        paper.disabled = true;
+        scissors.disabled = true;
+        }
     }
 // plays as many rounds as needed for a person to reach 5 wins. 
-while ((humanScore<5) && (computerScore<5)){
-    //human choice triggers a round. 
-    rock.addEventListener("click", playRound("rock", getComputerChoice()));
-    paper.addEventListener("click", playRound("paper", getComputerChoice()));
-    scissors.addEventListener("click", playRound("scissors", getComputerChoice()));
-}
+rock.addEventListener("click", () => playRound("rock", getComputerChoice()));
+paper.addEventListener("click", () => playRound("paper", getComputerChoice()));
+scissors.addEventListener("click", () => playRound("scissors", getComputerChoice()));
+
 if (humanScore>computerScore){
     results.textContent=`You win! Score: Human: ${humanScore}. Computer: ${computerScore}.`;
 } else{
